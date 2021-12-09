@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>코로나 정보종합</title>
+    <script src="library.js"></script>
+</head>
+<style>
+    .titleH {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 35px;
+}
+.titleB {
+    margin-top: 20px;
+    width: 170px;
+    height: 50px;
+    background-color: aquamarine;
+}
+#btns{
+    border: 1px solid skyblue;
+    border-width: 0px 0px 1px 2px;
+    background-color: rgba(0, 0, 0, 0);
+    color: skyblue;
+    padding: 5px;
+}
+#title ul li{
+    list-style-type: none;
+}
+.nextsection{
+    margin-top: 2000px;
+}
+.nextelement{
+    margin-top: 100px;
+}
+.webwindow{
+    margin-left: 250px;
+}
+#countrycovid_detail button{
+    margin-top: 100px;
+    margin-left: 170px;
+    width: 150px;
+    height: 150px;
+}
+
+#howTouse{
+    border: 1px solid red;
+    background: aliceblue;
+    width: 60px;
+    height: 25px;
+    text-align: center;
+}
+#listwindow{
+    border-width: 0px 0px 0px 0px;
+    background: aliceblue;
+    margin-left: 220px;
+    width: 1000px;
+    height: 500px;
+}
+#mapwindow{
+    width: 600px;
+    height: 500px;
+}
+
+#areacovid h3{
+    text-align: center;
+    margin-top: 150px;
+}
+
+#selectarea * {
+		margin: 0;
+		padding: 0;
+	}
+/* ul li태그에 리스트 스타일을 없앰 */
+#selectarea ul li{
+		list-style: none;
+	}
+/* a태그에 텍스트 밑줄을 없애고 색상을 #333 */
+#selectarea a {
+		text-decoration: none;
+		color:#333;
+	}
+/* 글자크기를 16px 맑은 고딕 굵게하고 width넓이 700, 높이 50만큼 배경색은 #ccc, 글자색은 검정색, 라인높이50px
+menu박스 가운데정렬, 글자가운데 정렬 */
+#menu {
+		font:bold 16px "malgun gothic";
+		width:200px;
+		height:50px;
+		background: #ccc;
+		color:black;
+		line-height: 50px; 
+		margin:0 auto;
+		text-align: center;
+	}
+
+/* menu태그 자식의 ul의 자식 li를 왼쪽정렬과 넓이 140설정 */
+#menu > ul > li {
+		float:left;
+		width:140px;
+		position:relative;
+	}
+#menu > button{
+    background-color: aliceblue;
+}
+#menu > li > ul {
+    width:130px;
+    display:none;
+    position: absolute;
+    font-size:14px;
+    background: skyblue;
+}
+#menu > li:hover > ul {
+		display:block;
+	}
+#menu > li > ul > li:hover {
+    background: orange;
+    transition: ease 1s;
+    }
+#arealist{
+    border: 1px solid red;
+    background-color: rgba(0, 0, 0, 0);
+}
+#audio{
+    margin-left: 220px;
+}
+
+#video{
+    margin-left: 420px;
+}
+</style>
+<script>
+    function setarea(area){
+        localStorage.clear()
+        localStorage.setItem('지역', area)
+    }
+</script>
+<body>
+    <section id="title">
+        <header>
+            <h1 class="titleH">COVID-19 정보 종합</h1>
+            <div class="nextelement"></div>
+        </header>
+        <article>
+            <ul>
+                <li><button type="menu" id="btns" class="titleB" onclick="location.href= '#worldcovid'">
+                    전세계 코로나 확진자 수
+                </button>
+                </li>
+                <li><button type="menu" id="btns" class="titleB" onclick="location.href= '#countrycovid'">
+                    국가별 코로나 확진자 수
+                </button>
+                </li>
+                <li><button type="menu" id="btns" class="titleB" onclick="location.href= '#areacovid'">
+                    지역별 코로나 확진자 수
+                </button>
+                </li>
+                <li><button type="menu" id="btns" class="titleB"
+                    onclick="location.href= '#vaccovid'">
+                    백신 접종자 현황
+                </button>
+                </li>
+                <li><button type="menu" id="btns" class="titleB" onclick="location.href= '#preventioncovid'">
+                    코로나 예방수칙
+                </button>
+                </li>
+            </ul>
+            <div style="position: fixed; right: 20px; bottom:20px;"><button title="메뉴로 이동합니다." type="button" onclick="location.href= '#title'">
+                메뉴로 이동
+            </button></div>
+        </article>
+        <article id="selectarea">
+            <div style="position: absolute; right: 300px; top: 170px;">현재 내 위치</div>
+            <iframe style="position: absolute; right: 30px; top: 200px;" id="mapwindow" src="map.html">지원안함</iframe><br>
+            <ul id="menu" style="position: absolute; right: 230px; top: 710px;">
+                <li><a href="#">지역선택</a>
+                    <ul>
+                        <li><button id="arealist" onclick="setarea('서울')">서울</button></li>
+                        <li><button id="arealist" onclick="setarea('부산')">부산</button></li>
+                        <li><button id="arealist" onclick="setarea('충남')">충남</button></li>
+                        <li><button id="arealist" onclick="setarea('충북')">충북</button></li>
+                        <li><button id="arealist" onclick="setarea('전북')">전북</button></li>
+                        <li><button id="arealist" onclick="setarea('전남')">전남</button></li>
+                        <li><button id="arealist" onclick="setarea('경북')">경북</button></li>
+                        <li><button id="arealist" onclick="setarea('경남')">경남</button></li>
+                        <li><button id="arealist" onclick="setarea('대구')">대구</button></li>
+                        <li><button id="arealist" onclick="setarea('인천')">인천</button></li>
+                        <li><button id="arealist" onclick="setarea('광주')">광주</button></li>
+                        <li><button id="arealist" onclick="setarea('경기')">경기</button></li>
+                        <li><button id="arealist" onclick="setarea('세종')">세종</button></li>
+                        <li><button id="arealist" onclick="setarea('울산')">울산</button></li>
+                        <li><button id="arealist" onclick="setarea('대전')">대전</button></li>
+                        <li><button id="arealist" onclick="setarea('제주')">제주</button></li>
+                        <li><button id="arealist" onclick="setarea('강원')">강원</button></li>
+                    </ul>
+                </li>
+            </ul>
+        </article>
+    </section>
+
+    <section id="worldcovid">
+        <header>
+            <div class="nextsection"></div>
+            <h1 class="titleH">전세계 코로나 확진자 수</h1>
+            <!-- <button title="메뉴로 이동합니다." type="button" onclick="location.href= '#title'">
+                메뉴로
+            </button> -->
+            <div class="nextelement"></div>
+        </header>
+        <article>
+            <a title="현황사이트 선택화면으로 이동합니다." href="world.html" target="left">현황사이트 선택</a><br>
+            <iframe class="webwindow" src="world.html" width="1000" height="500" name="left"
+            >지원안함</iframe
+          >
+        </article>
+    </section>
+
+    <section id="countrycovid">
+        <header>
+            <div class="nextsection"></div>
+            <h1 class="titleH">국가별 코로나 확진자 수</h1>
+            
+            
+            <div class="nextelement"></div>
+        </header>
+
+        <article>
+            <iframe class="webwindow" src="https://coronavirus.jhu.edu/map.html" width="1000" height="500" name="left"
+            >지원안함</iframe
+          >
+        </article>
+
+        <article id="countrycovid_detail">
+            <p id="howTouse" title="원하는 국가를 클릭해서 해당 국가의 세부정보를 확인">!사용법</p>
+            <table>
+                <th><button style="background: url(pic/japan.png);" title="일본" type="button" onclick="openNewPage('https://www3.nhk.or.jp/news/special/coronavirus/')"></button></th>
+                <th><button style="background: url(pic/usa.png);" title="미국" type="button" onclick="openNewPage('https://covid.cdc.gov/covid-data-tracker/?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcoronavirus%2F2019-ncov%2Fcases-updates%2Fcases-in-us.html#cases')"></button></th>
+                <th><button style="background: url(pic/korea.png);" title="한국" type="button" onclick="openNewPage('http://ncov.mohw.go.kr/index.jsp')"></button></th>
+                <th><button style="background: url(pic/china.png);" title="중국" type="button" onclick="openNewPage('https://3g.dxy.cn/newh5/view/pneumonia')"></button></th>
+            </table>
+        </article>
+    </section>
+
+    <section id="areacovid">
+        <header>
+            <div class="nextsection"></div>
+            <h1 class="titleH">지역별 코로나 확진자 수</h1>
+            <!-- <button title="메뉴로 이동합니다." type="button" onclick="location.href= '#title'">
+                메뉴로
+            </button> -->
+            <div class="nextelement"></div>
+        </header>
+        <article>
+            <iframe id="listwindow" src="arealist.html" name="up">지원안함</iframe><br>
+        </article>
+    </section>
+    <!-- <script type="text/javascript" src="lib.js"></script> -->
+    <section id="vaccovid">
+        <header>
+            <div class="nextsection"></div>
+            <h1 class="titleH">백신 접종자 현황</h1>
+            <!-- <button title="메뉴로 이동합니다." type="button" onclick="location.href= '#title'">
+                메뉴로
+            </button> -->
+            <div class="nextelement"></div>
+        </header>
+        <article>
+            <iframe id="listwindow" src="http://ncov.mohw.go.kr/tcmBoardView.do?brdId=3&brdGubun=31&dataGubun=&ncvContSeq=6060&contSeq=6060&board_id=312&gubun=ALL" name="up">지원안함</iframe><br>
+            <a style="margin-left: 220px;" href="http://ncov.mohw.go.kr/tcmBoardView.do?brdId=3&brdGubun=31&dataGubun=&ncvContSeq=6060&contSeq=6060&board_id=312&gubun=ALL" target="_blank">새창에서 보기</a>
+        </article>
+    </section>
+
+    <section id="preventioncovid">
+        <header>
+            <div class="nextsection"></div>
+            <h1 class="titleH">코로나 예방수칙</h1>
+            <!-- <button title="메뉴로 이동합니다." type="button" onclick="location.href= '#title'">
+                메뉴로
+            </button> -->
+            <div class="nextelement"></div>
+        </header>
+        <article>
+            <audio id="audio" src="covid.mp3" autoplay loop controls title="음성으로 듣기">웹 브라우저가 audio태그를 지원하지 않습니다.</audio>
+            <video id="video" src="covid.mp4" width="300" height="200" autoplay controls title="영상으로 보기">웹 브라우저가 video태그를 지원하지 않습니다.</video>
+
+            <ul>
+                <li class="nextelement">글로보는 코로나 예방수칙</li>
+                <ol type="1">
+                    <li>무증상으로 보이더라도 타인과 안전한 거리(1미터 이상)를 유지하세요.</li>
+                    <li>공공장소에서 특히 실내에 있거나 물리적 거리두기가 불가능할 땐 마스크를 쓰세요.</li>
+                    <li>밀폐된 공간보다는 개방되어 있고 환기가 잘 되는 공간을 선택하세요. 실내에서는 창문을 여세요.</li>
+                    <li>손을 자주 씻으세요. 비누와 물 또는 알코올 성분의 손 세정제를 사용하세요.</li>
+                    <li>차례가 오면 백신을 맞으세요. 백신 접종은 현지 지침을 따르세요.</li>
+                    <li>기침 또는 재채기를 할 때는 화장지를 이용하거나 팔꿈치를 구부려 코와 입을 가리세요.</li>
+                    <li>몸이 좋지 않다면 집에서 쉬세요.</li>
+                </ol>
+            </ul>
+        </article>
+    </section>
+</body>
+</html>
